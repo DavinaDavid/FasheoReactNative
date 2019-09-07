@@ -1,5 +1,8 @@
 
 import React, {Component} from 'react';
+import {createDrawerNavigator} from 'react-navigation';
+import Home from './pages/Home';
+import Login from './pages/Login';
 import {
   SafeAreaView,
   StyleSheet,
@@ -17,7 +20,7 @@ import {
 
 
 export default class App extends Component {
- 
+
   render(){
   return (
     <View style={styles.container}>
@@ -25,9 +28,11 @@ export default class App extends Component {
         <Image style={{bottom:30}}
          source = {require('./src/images/logo.png')}
         />
-        
         <Text style={{color:'#6A2976' , fontSize:23,fontWeight:"bold",bottom:20}}>Designer Clothing and Fashion</Text>
       </View>
+
+  <Mypages/>
+
     </View> 
     
   );
@@ -47,5 +52,9 @@ const styles = StyleSheet.create({
 
 });
 
+const Mypages = new createDrawerNavigator({
+  Login:{screen: Login},
+  Home:{screen: Home}
+})
 AppRegistry.registerComponent('App',() => App)
 
