@@ -1,0 +1,764 @@
+***********************APP.JS************************************
+
+import React from 'react';
+import {
+  AppRegistry,
+  StyleSheet,
+  ImageBackground,
+  Text,
+  View,
+  Image,
+  TextInput,
+  Dimensions,
+  TouchableOpacity,
+  Button
+} from 'react-native';
+import login from './src/screens/LoginScreen/login'
+import regform from './src/screens/LoginScreen/regform'
+import ForgetPassPg from './src/screens/LoginScreen/ForgetPassPg'
+import { createAppContainer , NavigationActions, StackActions} from 'react-navigation';
+import { createStackNavigator } from 'react-navigation-stack';
+import RadioForm,{RadioButton,RadioButtonInput,RadioButtonLabel} from 'react-native-simple-radio-button';
+var userRole=[
+  {label:"Customer ",value:0},
+  {label:"Designer ",value:1},
+];
+const {width:WIDTH}=Dimensions.get('window')
+class HomeScreen extends React.Component {
+   componentDidMount(){
+     setTimeout(
+        () => {
+
+          this.props.navigation.dispatch(StackActions.reset({
+            index: 0,
+            actions: [
+              NavigationActions.navigate({ routeName: 'Details' })
+            ],
+          }))
+
+        },3000
+
+     );
+     
+     
+   }
+
+  render() {
+    return (
+      <View style={styles.container}>
+      <View style={styles.logo}>
+        <Image style={{bottom:30}}
+         source = {require('./src/images/logo.png')}
+        />
+        
+        <Text style={{color:'#6A2976' , fontSize:23,fontWeight:"bold",bottom:20}}>Designer Clothing and Fashion</Text>
+      </View>
+    </View> 
+    );
+  }  
+}
+
+
+const AppNavigator = createStackNavigator({
+  Home: {
+    screen: HomeScreen,
+    navigationOptions: {
+      header: null,
+    },
+  },
+  Details: {
+    screen: login,
+    navigationOptions: {
+      header: null,
+    },
+  },
+  Regform:{
+    screen: regform,
+    navigationOptions: {
+      header: null,
+    },
+  },
+  ForgetForm:{
+    screen: ForgetPassPg,
+    navigationOptions: {
+      header: null,
+    },
+  },
+}, {
+    initialRouteName: 'Home',
+});
+
+
+
+
+const styles = StyleSheet.create({
+  container:{
+    flex:1,
+    backgroundColor:'#EADCDB'
+  
+  },
+  logo:{
+    alignItems:"center",
+    flexGrow:1,
+    justifyContent:'center'
+  },
+  backgroundContainer:{
+    justifyContent:"center",
+    flex:1,
+    width:null,
+    height:null,
+    alignItems:"center"
+    },
+    loginlogo:{
+      width:130,
+      height:130
+    },
+    logoContainer:{
+     alignItems:"center",
+     bottom:30
+    },
+    
+});
+
+AppRegistry.registerComponent('App',() => App)
+
+
+export default createAppContainer(AppNavigator);
+
+
+******************************************************forgetPass****************************************
+
+import React from 'react';
+import {
+  AppRegistry,
+  StyleSheet,
+  ImageBackground,
+  Text,
+  View,
+  Image,
+  TextInput,
+  Dimensions,
+  TouchableOpacity,
+  Button
+} from 'react-native';
+import { createAppContainer , NavigationActions, StackActions} from 'react-navigation';
+import { createStackNavigator } from 'react-navigation-stack';
+
+
+export default class ForgetPassPg extends React.Component{
+    render(){
+       return(
+        <ImageBackground source = {require('../../images/backgroundpic6.jpg')} style={styles.backgroundContainer}> 
+          <View style={styles.container1}>
+            <Text style={styles.header}>Forgot Password?</Text>
+             <Text style={{bottom:20,fontWeight:'bold'}}>Don't Worry we are here to help!</Text>
+               <TextInput style={styles.textinput} placeholder='Enter Your Email' underlineColorAndroid={'transparent'} placeholderTextColor={'#4d3439'}/>
+              
+          <TouchableOpacity style={styles.button}
+           onPress={() => {
+            alert("Please Check your Email")
+            this.props.navigation.dispatch(StackActions.reset({
+              index: 0,
+              actions: [
+                NavigationActions.navigate({ routeName: 'Details' })
+              ],
+            }))
+          }}
+          
+          >
+             <Text style={styles.btntextSignup}>Change Password</Text>
+          </TouchableOpacity>
+          </View>
+          </ImageBackground>
+       );
+    }
+  }
+
+
+
+
+
+  
+   /////SignUp style sheet
+const styles = StyleSheet.create({
+    regform1: {
+     alignSelf: 'stretch',
+   },
+   header: {
+      fontSize:24,
+      color:'#000000',
+      paddingBottom:10,
+      marginBottom: 40,
+      borderBottomColor: '#A9A9A9',
+      borderBottomWidth:1,
+   },
+   txt:{
+      alignSelf:"stretch",
+      height:30,
+      marginBottom:2,
+      color:'#000000',
+   },
+   textinput: {
+      alignSelf:"stretch",
+      height:40,
+      marginBottom:30,
+      color:'#000000',
+      borderBottomColor:'#A9A9A9',
+      borderBottomWidth:1,
+   },
+   backgroundContainer:{
+     justifyContent:"center",
+     flex:1,
+     width:null,
+     height:null,
+     alignItems:"center"
+     },
+   button: {
+      alignSelf:"stretch",
+      alignItems: "center",
+      padding:10,
+      backgroundColor: '#FFB6C1',
+      borderRadius:8,
+      marginTop:30,
+      borderColor:'#000000',
+   },
+   btntextSignup: {
+      fontSize:20,
+      color:'#000000',
+      fontWeight:'bold',
+   },
+   container1:{
+     flex:1,
+     justifyContent: 'center',
+     // backgroundColor: '#ECDEDE',
+     paddingLeft: 60,
+     paddingRight: 60,
+     alignSelf: 'stretch'
+  },
+ 
+ 
+ 
+ });
+
+*********************************************************************signup**********************************************************
+
+
+import React from 'react';
+import {
+  AppRegistry,
+  StyleSheet,
+  ImageBackground,
+  Text,
+  View,
+  Image,
+  TextInput,
+  Dimensions,
+  TouchableOpacity,
+  Button
+} from 'react-native';
+import { createAppContainer , NavigationActions, StackActions} from 'react-navigation';
+import { createStackNavigator } from 'react-navigation-stack';
+import RadioForm,{RadioButton,RadioButtonInput,RadioButtonLabel} from 'react-native-simple-radio-button';
+const {width:WIDTH}=Dimensions.get('window')
+var userRole=[
+  {label:"Customer ",value:0},
+  {label:"Designer ",value:1},
+];
+
+export default class regform extends React.Component{
+    render(){
+       return(
+         
+        <ImageBackground source = {require('../../images/backgroundpic6.jpg')} style={styles.backgroundContainer}>
+            <View style={styles.container1}>
+              <Text style={styles.header}>Register YourSelf!</Text>
+                  <TextInput style={styles.textinput} placeholder='Your Name' placeholderTextColor={'#4d3439'}  underlineColorAndroid={'transparent'}/>
+                  <TextInput style={styles.textinput} placeholder='Your Email' placeholderTextColor={'#4d3439'}  underlineColorAndroid={'transparent'}/>
+                  <TextInput style={styles.textinput} placeholder='Set Password' placeholderTextColor={'#4d3439'} secureTextEntry={true} underlineColorAndroid={'transparent'}/>
+                  <TextInput style={styles.textinput} placeholder='Add Address' placeholderTextColor={'#4d3439'} underlineColorAndroid={'transparent'}/>
+                  <Text style={styles.txt}>Who are you?</Text>
+                  <RadioForm radio_props={userRole} initial={-1} onPress={(value) => {}} buttonSize={15} selectedButtonColor={'green'} selectedLabelColor={'green'} formHorizontal={true}/>
+            
+            <TouchableOpacity style={styles.button}
+            onPress={() => {
+              alert("Thanks For Registration")
+              this.props.navigation.dispatch(StackActions.reset({
+                index: 0,
+                actions: [
+                  NavigationActions.navigate({ routeName: 'Details' })
+                ],
+              }))
+            }}
+            >
+              <Text style={styles.btntextSignup}>Sign Up</Text>
+            </TouchableOpacity>
+            </View>
+          </ImageBackground>
+       );
+    }
+  }
+
+  
+
+
+
+
+
+
+
+
+
+   /////SignUp style sheet
+const styles = StyleSheet.create({
+   regform1: {
+    alignSelf: 'stretch',
+  },
+  header: {
+     fontSize:24,
+     color:'#000000',
+     paddingBottom:10,
+     marginBottom: 40,
+     borderBottomColor: '#A9A9A9',
+     borderBottomWidth:1,
+  },
+  txt:{
+     alignSelf:"stretch",
+     height:30,
+     marginBottom:2,
+     color:'#000000',
+  },
+  textinput: {
+     alignSelf:"stretch",
+     height:40,
+     marginBottom:30,
+     color:'#000000',
+     borderBottomColor:'#A9A9A9',
+     borderBottomWidth:1,
+  },
+  backgroundContainer:{
+    justifyContent:"center",
+    flex:1,
+    width:null,
+    height:null,
+    alignItems:"center"
+    },
+  button: {
+     alignSelf:"stretch",
+     alignItems: "center",
+     padding:10,
+     backgroundColor: '#FFB6C1',
+     borderRadius:8,
+     marginTop:30,
+     borderColor:'#000000',
+  },
+  btntextSignup: {
+     fontSize:20,
+     color:'#000000',
+     fontWeight:'bold',
+  },
+  container1:{
+    flex:1,
+    justifyContent: 'center',
+    // backgroundColor: '#ECDEDE',
+    paddingLeft: 60,
+    paddingRight: 60,
+    alignSelf: 'stretch'
+ },
+
+
+
+});
+
+
+*****************************************************LOGIN*******************************************************
+
+import React, { Component } from 'react';
+import {
+  AppRegistry,
+  StyleSheet,
+  ImageBackground,
+  Text,
+  View,
+  Image,
+  TextInput,
+  Dimensions,
+  TouchableOpacity,
+  Button
+} from 'react-native';
+import { whileStatement } from '@babel/types';
+import { createAppContainer , NavigationActions, StackActions} from 'react-navigation';
+import { createStackNavigator } from 'react-navigation-stack';
+
+const {width:WIDTH}=Dimensions.get('window')
+export default class login extends Component {
+  render() {
+    return (
+      
+  <ImageBackground source = {require('../../images/backgroundpic7.jpg')} style={styles.backgroundContainer}>
+  <View style={styles.logoContainer}>
+    <Image source = {require('../../images/loginpic2.png')} style={styles.loginlogo}></Image>
+    <Text style={styles.logintext}>Fasheonic Login</Text>
+  </View>
+  <View>
+    <TextInput
+    style={styles.inputStyle}
+    placeholder={'Enter Your Username'}
+    placeholderTextColor={'#4d3439'}
+    underlineColorAndroid='transparent'
+    ></TextInput>
+  </View>
+  <View>
+    <TextInput
+    style={styles.inputStyle2}
+    placeholder={'Enter Your Password'}
+    placeholderTextColor={'#4d3439'}
+    secureTextEntry={true}
+    underlineColorAndroid='transparent'
+    ></TextInput>
+  </View>
+<View style={{flexDirection:"row",justifyContent:"space-between",top:25}}>
+  <TouchableOpacity style={{
+    backgroundColor:'#f74f6e',
+    padding:6,
+    width:130,
+    height:40,
+    marginRight:20,
+    textAlign:"center",
+    alignItems:"center"
+    
+  }}>
+    <Text style={{color:'#fff',fontWeight:'bold',fontSize:16}}>Login</Text>
+  </TouchableOpacity>
+  <TouchableOpacity style={{
+      backgroundColor:'#fff',
+      padding:6,
+      width:130,
+      height:40,
+      textAlign:"center",
+      alignItems:"center"
+  }}        
+           onPress={() => {
+            this.props.navigation.dispatch(StackActions.reset({
+              index: 0,
+              actions: [
+                NavigationActions.navigate({ routeName: 'Regform' })
+              ],
+            }))
+          }}>
+    <Text style={{color:'#eb0958',fontWeight:'bold',fontSize:16}}>Register</Text>
+  </TouchableOpacity>
+</View>
+<Text style={{top:36,fontSize:16,color:'#fff',fontWeight:"bold",paddingRight:130}}
+onPress={() => {
+  this.props.navigation.dispatch(StackActions.reset({
+    index: 0,
+    actions: [
+      NavigationActions.navigate({ routeName: 'ForgetForm' })
+    ],
+  }))
+}}
+
+>Forget Password ?</Text>
+</ImageBackground>
+);
+   }
+}
+
+
+const styles = StyleSheet.create({
+  backgroundContainer:{
+  justifyContent:"center",
+  flex:1,
+  width:null,
+  height:null,
+  alignItems:"center"
+  },
+  loginlogo:{
+    width:130,
+    height:130
+  },
+  logoContainer:{
+   alignItems:"center",
+   bottom:30
+  },
+  logintext:{
+    color:'#eb0958',
+    fontSize:27,
+    fontWeight:"bold",
+    bottom:10,
+    marginTop:10,
+    opacity:0.8
+  },
+  inputStyle:{
+    bottom:20,
+    width:WIDTH - 55,
+    height:45,
+    borderRadius:25,
+    fontSize:17,
+    paddingLeft:45,
+    backgroundColor:'#ffe8ec',
+    color:'#4d3439',
+    marginHorizontal:25,
+    borderColor:'#4d3439'
+  },
+  inputStyle2:{
+    width:WIDTH - 55,
+    height:45,
+    borderRadius:25,
+    fontSize:17,
+    paddingLeft:45,
+    backgroundColor:'#ffe8ec',
+    color:'#4d3439',
+    marginHorizontal:25,
+    borderColor:'#4d3439',
+    top:5
+  },
+  loginbtn:{
+    width:WIDTH - 55,
+    height:45,
+    borderRadius:25,
+    justifyContent:"center",
+    marginTop:40,
+    backgroundColor:'#fa6981'
+  },
+  btntext:{
+    justifyContent:"center",
+    alignItems:"center",
+    color:'white',
+    fontSize:20,
+    fontWeight:'bold',
+    textAlign:"center"
+
+  }
+
+});
+
+
+////////////////////////////////////////////////////////new login//////////////////////////////////////////////////
+
+import React, { Component } from 'react';
+import {
+  AppRegistry,
+  StyleSheet,
+  ImageBackground,
+  Text,
+  View,
+  Image,
+  TextInput,
+  Dimensions,
+  TouchableOpacity,
+  Button
+} from 'react-native';
+import { whileStatement } from '@babel/types';
+import { createAppContainer , NavigationActions, StackActions} from 'react-navigation';
+import { createStackNavigator } from 'react-navigation-stack';
+import { equal } from 'assert';
+
+const {width:WIDTH}=Dimensions.get('window')
+export default class login extends Component {
+  //  constructor(){
+  //    super()
+  //    this.state={
+  //      name:'',
+  //      nameValidate:true,
+  //      password:''
+  //    }
+  //  }
+
+  //  validate(text,type){
+  //    alpha=(/^[A-Za-z]+$/)
+  //    if(type=='username')
+  //    {
+  //      if(alpha.test())
+  //      {
+  //        this.setState({
+  //          nameValidate:true,
+  //        })
+  //      }
+  //      else
+  //      {
+  //       this.setState({
+  //         nameValidate:false,
+  //       })
+  //      }
+  //    }
+
+  //  }
+  // constructor(props)
+  // {
+  //   super(props);
+  //   this.state={
+  //     fname:'',
+  //     lname:''
+  //   }
+  // }
+
+  // myFun=()=>{
+  //   const {fname,lname}=this.state;
+  // if(fname=='')
+  // {
+  //   this.setState({msg:'please enter your Username'});
+  // }
+  // else if(lname=='')
+  // {
+  //   this.setState({msg:'please enter your Password'});
+  // }
+  // else{
+  //   this.setState({msg:'Foam has been submitted'});
+  // }
+  // }
+
+  render() {
+    return (
+      
+  <ImageBackground source = {require('../../images/backgroundpic7.jpg')} style={styles.backgroundContainer}>
+  <View style={styles.logoContainer}>
+    <Image source = {require('../../images/loginpic2.png')} style={styles.loginlogo}></Image>
+    <Text style={styles.logintext}>Fasheonic Login</Text>
+  </View>
+  <View>
+    <TextInput
+    style={styles.inputStyle}
+    onChangeText={(text)=>this.validate(text,'username')}
+    placeholder={'Enter Your Username'}
+    placeholderTextColor={'#4d3439'}
+    underlineColorAndroid='transparent'
+    // onChangeText={
+    //   fname => this.setState({fname})
+    // }
+    
+    ></TextInput>
+  </View>
+  <View>
+    <TextInput
+    style={styles.inputStyle2}
+    placeholder={'Enter Your Password'}
+    placeholderTextColor={'#4d3439'}
+    secureTextEntry={true}
+    underlineColorAndroid='transparent'
+    // onChangeText={
+    //   lname => this.setState({lname})
+    // }
+    ></TextInput>
+  </View>
+<View style={{flexDirection:"row",justifyContent:"space-between",top:25}}>
+  <TouchableOpacity style={{
+    backgroundColor:'#f74f6e',
+    padding:6,
+    width:130,
+    height:40,
+    marginRight:20,
+    textAlign:"center",
+    alignItems:"center" 
+  }} onPress={this.myFun}>
+    <Text style={{color:'#fff',fontWeight:'bold',fontSize:16}}>Login</Text>
+  </TouchableOpacity>
+  <TouchableOpacity style={{
+      backgroundColor:'#fff',
+      padding:6,
+      width:130,
+      height:40,
+      textAlign:"center",
+      alignItems:"center"
+  }}        
+           onPress={() => {
+            this.props.navigation.dispatch(StackActions.reset({
+              index: 0,
+              actions: [
+                NavigationActions.navigate({ routeName: 'Regform' })
+              ],
+            }))
+          }}>
+    <Text style={{color:'#eb0958',fontWeight:'bold',fontSize:16}}>Register</Text>
+  </TouchableOpacity>
+</View>
+<Text style={{top:36,fontSize:16,color:'#fff',fontWeight:"bold",paddingRight:130}}
+onPress={() => {
+  this.props.navigation.dispatch(StackActions.reset({
+    index: 0,
+    actions: [
+      NavigationActions.navigate({ routeName: 'ForgetForm' })
+    ],
+  }))
+}}
+
+>Forget Password ?</Text>
+{/* <Text style={{color:'red',fontSize:17,top:50}}>{this.state.msg}</Text> */}
+</ImageBackground>
+);
+   }
+}
+
+
+const styles = StyleSheet.create({
+  backgroundContainer:{
+  justifyContent:"center",
+  flex:1,
+  width:null,
+  height:null,
+  alignItems:"center"
+  },
+  loginlogo:{
+    width:130,
+    height:130
+  },
+  logoContainer:{
+   alignItems:"center",
+   bottom:30
+  },
+  logintext:{
+    color:'#eb0958',
+    fontSize:27,
+    fontWeight:"bold",
+    bottom:10,
+    marginTop:10,
+    opacity:0.8
+  },
+  inputStyle:{
+    bottom:20,
+    width:WIDTH - 55,
+    height:45,
+    borderRadius:25,
+    fontSize:17,
+    paddingLeft:45,
+    backgroundColor:'#ffe8ec',
+    color:'#4d3439',
+    marginHorizontal:25,
+  },
+  inputStyle2:{
+    width:WIDTH - 55,
+    height:45,
+    borderRadius:25,
+    fontSize:17,
+    paddingLeft:45,
+    backgroundColor:'#ffe8ec',
+    color:'#4d3439',
+    marginHorizontal:25,
+    borderColor:'#4d3439',
+    top:5
+  },
+  loginbtn:{
+    width:WIDTH - 55,
+    height:45,
+    borderRadius:25,
+    justifyContent:"center",
+    marginTop:40,
+    backgroundColor:'#fa6981'
+  },
+  btntext:{
+    justifyContent:"center",
+    alignItems:"center",
+    color:'white',
+    fontSize:20,
+    fontWeight:'bold',
+    textAlign:"center"
+
+  },
+  error:{
+    borderWidth:6,
+    borderColor:'yellow',
+    color:'white'
+  }
+
+});
+
