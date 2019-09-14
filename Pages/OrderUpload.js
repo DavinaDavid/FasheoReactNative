@@ -3,6 +3,8 @@ import {StyleSheet,Text,View,TouchableOpacity,Image,TextInput,Button} from 'reac
 import {Header,Right,Left,Icon} from 'native-base';
 import ImagePicker from 'react-native-image-picker';
 import Logo from '../images/logo.png';
+import UploadIcon from '../images/upload.png';
+import menu from '../images/menu.png';
 
 const options={
    title:'My Camera',
@@ -13,8 +15,8 @@ const options={
 class OrderUpload extends React.Component{
    static navigationOptions = {
       drawerIcon: ({tintColor}) => (
-         <Icon name="Upload" style={{fontSize:24,color:'tintColor'}}/>
-      )
+         <Image source={UploadIcon} style={{ height:30, width:30, margin:5,color:'tintColor'}}/>
+         )
    }
    constructor(props){
       super(props);
@@ -47,18 +49,21 @@ class OrderUpload extends React.Component{
    render(){
       return(
       <View style={styles.container}>
-               <Header style={{backgroundColor:'#DDA0DD'}}>
-                  <Icon style={{position:'absolute',left:8}} name="menu" onPress={()=>this.props.navigation.openDrawer()}/>
-                  <Image source={Logo} style={{height:50,width:80,padding:3,position:'absolute',left:40}}/>
-            </Header>
+              <Header style={{backgroundColor:'#DDA0DD'}}>
+               <TouchableOpacity  style={{position:'absolute',left:10}} onPress={()=>this.props.navigation.openDrawer()}>
+               <Image source={menu} style={{ height:30, width:30, marginTop:12}}/>
+               </TouchableOpacity>
+                   <Image source={Logo} style={{height:50,width:80,padding:5,margin:5,position:'absolute',left:280}}/>
+             </Header>
             
             <TextInput style={{width:380,height:80,margin:5,padding:5}} placeholder='Add Some Description'></TextInput>
            <TouchableOpacity style={{backgroundColor:'#778899',margin:5,padding:10}} onPress={this.ImagePicking}>
-             <Text style={{fontWeight:'bold',fontSize:14}}>Select Image</Text>   
+             <Text style={{fontWeight:'bold',fontSize:16}}>Select Image</Text>   
            </TouchableOpacity>
-           <Image source={this.state.avatarSource} style={{width:380,height:450,margin:5,padding:10}}/>     
-           <Button style={{width:100,height:150,margin:5,padding:5,jusifyContent:'center',fontWeight:'bold',fontSize:24}} title="Upload Order" onPress={this.OrderUploaded}/>
-      
+           <Image source={this.state.avatarSource} style={{width:380,height:470,margin:5,padding:10}}/>     
+           <TouchableOpacity style={{justifyContent:'center',padding:20,margin:10,width:350}}>
+            <Button title='Upload Order' onPress={()=>{alert('Uploaded!')}}/>
+         </TouchableOpacity>
          </View>
       );
    }
